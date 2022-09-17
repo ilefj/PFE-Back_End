@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nlcjN8JL77Cvu8HzgjEBEgUOtbkttIVhcIrGigM15apvn8f8snBEuiYLdeq8bH8kh0ZARQ/K8JCIZURh/lPv5g==",
+  "dgSpecHash": "b0myi4AOet2XRO+MC/GLFpUCsETAjelka9+nz2FzzXOPA93ZjUtxAOc5m1mVrlij04o0WceDXMXE+ZnPlzXBMg==",
   "success": true,
-  "projectFilePath": "C:\\projets\\Pfe\\.net\\Version back 2\\Infra\\Infra.csproj",
+  "projectFilePath": "C:\\Users\\ASUS\\PFE-Project\\Back-End\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\mailkit\\3.3.0\\mailkit.3.3.0.nupkg.sha512",

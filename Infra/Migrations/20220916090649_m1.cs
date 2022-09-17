@@ -94,25 +94,6 @@ namespace Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Ressource",
-                columns: table => new
-                {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    coûtParH = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ressource", x => x.id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "TypeTâche",
                 columns: table => new
                 {
@@ -255,6 +236,43 @@ namespace Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "employe",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    NCin = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Nom = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Prenom = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Poste = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Matricule = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Adresse = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Tel = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Salaire = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_employe", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_employe_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "offres",
                 columns: table => new
                 {
@@ -266,6 +284,10 @@ namespace Infra.Migrations
                     Description = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Reference = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    QteSiege = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    QteSite = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -289,30 +311,31 @@ namespace Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Offre_Ressource",
+                name: "Offre_Employe",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "varchar(255)", nullable: false)
+                    OffreId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Nbre_Heure = table.Column<int>(type: "int", nullable: false),
-                    offreid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Ressourceid = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    EmployeId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Prix_Revient = table.Column<double>(type: "double", nullable: false),
+                    Nbre_H_Siege = table.Column<double>(type: "double", nullable: false),
+                    Nbre_H_Site = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Offre_Ressource", x => x.id);
+                    table.PrimaryKey("PK_Offre_Employe", x => new { x.OffreId, x.EmployeId });
                     table.ForeignKey(
-                        name: "FK_Offre_Ressource_offres_offreid",
-                        column: x => x.offreid,
+                        name: "FK_Offre_Employe_employe_EmployeId",
+                        column: x => x.EmployeId,
+                        principalTable: "employe",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Offre_Employe_offres_OffreId",
+                        column: x => x.OffreId,
                         principalTable: "offres",
-                        principalColumn: "id");
-                    table.ForeignKey(
-                        name: "FK_Offre_Ressource_Ressource_Ressourceid",
-                        column: x => x.Ressourceid,
-                        principalTable: "Ressource",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -386,14 +409,14 @@ namespace Infra.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Offre_Ressource_offreid",
-                table: "Offre_Ressource",
-                column: "offreid");
+                name: "IX_employe_UserId",
+                table: "employe",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Offre_Ressource_Ressourceid",
-                table: "Offre_Ressource",
-                column: "Ressourceid");
+                name: "IX_Offre_Employe_EmployeId",
+                table: "Offre_Employe",
+                column: "EmployeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_offres_Domaineid",
@@ -434,7 +457,7 @@ namespace Infra.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Offre_Ressource");
+                name: "Offre_Employe");
 
             migrationBuilder.DropTable(
                 name: "Tâche");
@@ -443,7 +466,7 @@ namespace Infra.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Ressource");
+                name: "employe");
 
             migrationBuilder.DropTable(
                 name: "offres");

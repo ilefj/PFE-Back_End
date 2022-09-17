@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20220907130556_m5")]
-    partial class m5
+    [Migration("20220916122349_m3")]
+    partial class m3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,6 +86,30 @@ namespace Infra.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("employe");
+                });
+
+            modelBuilder.Entity("Application.Models.Entity.Offre_Employe", b =>
+                {
+                    b.Property<string>("OffreId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<Guid>("EmployeId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<double>("Nbre_H_Siege")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Nbre_H_Site")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Prix_Revient")
+                        .HasColumnType("double");
+
+                    b.HasKey("OffreId", "EmployeId");
+
+                    b.HasIndex("EmployeId");
+
+                    b.ToTable("Offre_Employe");
                 });
 
             modelBuilder.Entity("Application.Models.Entity.Responsable_Entreprise", b =>
@@ -192,9 +216,6 @@ namespace Infra.Migrations
                     b.Property<Guid>("Domaineid")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("EmployeId")
-                        .HasColumnType("char(36)");
-
                     b.Property<string>("Reference")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -209,8 +230,6 @@ namespace Infra.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("Domaineid");
-
-                    b.HasIndex("EmployeId");
 
                     b.HasIndex("UserId");
 
@@ -399,6 +418,25 @@ namespace Infra.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Application.Models.Entity.Offre_Employe", b =>
+                {
+                    b.HasOne("Application.Models.Entity.Employe", "employe")
+                        .WithMany("Offre_Employes")
+                        .HasForeignKey("EmployeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.Models.Offre", "offre")
+                        .WithMany("Offre_Employes")
+                        .HasForeignKey("OffreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("employe");
+
+                    b.Navigation("offre");
+                });
+
             modelBuilder.Entity("Application.Models.Offre", b =>
                 {
                     b.HasOne("Application.Models.Entity.Domaine", "Domaine")
@@ -407,19 +445,11 @@ namespace Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Application.Models.Entity.Employe", "Employe")
-                        .WithMany()
-                        .HasForeignKey("EmployeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Application.Models.Entity.Responsable_Entreprise", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("Domaine");
-
-                    b.Navigation("Employe");
 
                     b.Navigation("User");
                 });
@@ -495,6 +525,16 @@ namespace Infra.Migrations
             modelBuilder.Entity("Application.Models.Entity.Domaine", b =>
                 {
                     b.Navigation("Offres");
+                });
+
+            modelBuilder.Entity("Application.Models.Entity.Employe", b =>
+                {
+                    b.Navigation("Offre_Employes");
+                });
+
+            modelBuilder.Entity("Application.Models.Offre", b =>
+                {
+                    b.Navigation("Offre_Employes");
                 });
 
             modelBuilder.Entity("Application.Models.TypeTâche", b =>

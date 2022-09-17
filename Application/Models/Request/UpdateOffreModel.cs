@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Application.Models
@@ -15,6 +16,14 @@ namespace Application.Models
         public string Reference { get; set; }
         public string UserId { get; set; }
         public string domaineId{ get; set; }
-        public string employe{ get; set; }
+        
+        public Emp[] Employes { get; set; }
+
+    }
+    public class Emp
+    {
+        public Guid Id { get; set; }
+
+
     }
 }

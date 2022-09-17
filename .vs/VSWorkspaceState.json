@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Application",
+    "\\Application\\Configuration",
+    "\\Application\\Models",
+    "\\Application\\Models\\Entity",
+    "\\authUsers"
+  ],
+  "SelectedNode": "\\authUsers\\authUsers.csproj",
+  "PreviewInSolutionExplorer": false
+}

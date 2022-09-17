@@ -49,3 +49,20 @@ C:\projets\Pfe\.net\Version back 2\Infra\obj\Debug\net6.0\refint\Infra.dll
 C:\projets\Pfe\.net\Version back 2\Infra\obj\Debug\net6.0\Infra.pdb
 C:\projets\Pfe\.net\Version back 2\Infra\obj\Debug\net6.0\Infra.genruntimeconfig.cache
 C:\projets\Pfe\.net\Version back 2\Infra\obj\Debug\net6.0\ref\Infra.dll
+C:\Users\ASUS\PFE-Project\Back-End\Infra\bin\Debug\net6.0\Infra.deps.json
+C:\Users\ASUS\PFE-Project\Back-End\Infra\bin\Debug\net6.0\Infra.runtimeconfig.json
+C:\Users\ASUS\PFE-Project\Back-End\Infra\bin\Debug\net6.0\Infra.dll
+C:\Users\ASUS\PFE-Project\Back-End\Infra\bin\Debug\net6.0\Infra.pdb
+C:\Users\ASUS\PFE-Project\Back-End\Infra\bin\Debug\net6.0\Application.dll
+C:\Users\ASUS\PFE-Project\Back-End\Infra\bin\Debug\net6.0\Application.pdb
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.csproj.AssemblyReference.cache
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.AssemblyInfoInputs.cache
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.AssemblyInfo.cs
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.csproj.CopyComplete
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.dll
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\refint\Infra.dll
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.pdb
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\Infra.genruntimeconfig.cache
+C:\Users\ASUS\PFE-Project\Back-End\Infra\obj\Debug\net6.0\ref\Infra.dll
