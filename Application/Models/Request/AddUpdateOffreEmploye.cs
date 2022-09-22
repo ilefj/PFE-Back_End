@@ -8,12 +8,8 @@ namespace Application.Models.Request
 {
     public class AddUpdateOffreEmploye
     {
-        public double Prix_Revient { get; set; }
         public double Nbre_H_Siege { get; set; }
         public double Nbre_H_Site { get; set; }
-
-        public string OffreId { get; set; }
-
-        public string EmployeId { get; set; }
+        public string emp { get; set; }
     }
 }

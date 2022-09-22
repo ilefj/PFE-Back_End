@@ -256,8 +256,7 @@ namespace Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Tel = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Salaire = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Salaire = table.Column<double>(type: "double", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
@@ -285,10 +284,17 @@ namespace Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Reference = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    QteSiege = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    QteSite = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Total_Prix_Revient = table.Column<double>(type: "double", nullable: false),
+                    Total_Prix_Proposition = table.Column<double>(type: "double", nullable: false),
+                    Qte_H_Siege_Site = table.Column<double>(type: "double", nullable: false),
+                    Total_Cout_Offre = table.Column<double>(type: "double", nullable: false),
+                    Total_Marge_Brut = table.Column<double>(type: "double", nullable: false),
+                    Total_Marge_Nette = table.Column<double>(type: "double", nullable: false),
+                    Total_Marge_Nette_Par_Pen = table.Column<double>(type: "double", nullable: false),
+                    Total_Revient_Prod = table.Column<double>(type: "double", nullable: false),
+                    Total_HT_Prod = table.Column<double>(type: "double", nullable: false),
+                    Total_TTC_Prod = table.Column<double>(type: "double", nullable: false),
+                    Total_Marge_Nette_Prod = table.Column<double>(type: "double", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Domaineid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
@@ -319,7 +325,12 @@ namespace Infra.Migrations
                     EmployeId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Prix_Revient = table.Column<double>(type: "double", nullable: false),
                     Nbre_H_Siege = table.Column<double>(type: "double", nullable: false),
-                    Nbre_H_Site = table.Column<double>(type: "double", nullable: false)
+                    Nbre_H_Site = table.Column<double>(type: "double", nullable: false),
+                    Prix_Proposition = table.Column<double>(type: "double", nullable: false),
+                    CoutParEmp = table.Column<double>(type: "double", nullable: false),
+                    Marge_Brut = table.Column<double>(type: "double", nullable: false),
+                    Marge_nette = table.Column<double>(type: "double", nullable: false),
+                    Marge_nette_PerPen = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -332,6 +343,39 @@ namespace Infra.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Offre_Employe_offres_OffreId",
+                        column: x => x.OffreId,
+                        principalTable: "offres",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "produit",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    nom_Prod = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    prix_Unitaire = table.Column<double>(type: "double", nullable: false),
+                    Quantite = table.Column<double>(type: "double", nullable: false),
+                    marge = table.Column<int>(type: "int", nullable: false),
+                    remise = table.Column<int>(type: "int", nullable: false),
+                    apres_Marge = table.Column<double>(type: "double", nullable: false),
+                    apres_Remise = table.Column<double>(type: "double", nullable: false),
+                    Produit_HT = table.Column<double>(type: "double", nullable: false),
+                    Produit_TTC = table.Column<double>(type: "double", nullable: false),
+                    OffreId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_produit", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_produit_offres_OffreId",
                         column: x => x.OffreId,
                         principalTable: "offres",
                         principalColumn: "id",
@@ -429,6 +473,11 @@ namespace Infra.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_produit_OffreId",
+                table: "produit",
+                column: "OffreId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tâche_offreid",
                 table: "Tâche",
                 column: "offreid");
@@ -458,6 +507,9 @@ namespace Infra.Migrations
 
             migrationBuilder.DropTable(
                 name: "Offre_Employe");
+
+            migrationBuilder.DropTable(
+                name: "produit");
 
             migrationBuilder.DropTable(
                 name: "Tâche");

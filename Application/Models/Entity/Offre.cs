@@ -23,9 +23,15 @@ namespace Application.Models
         public double Total_Marge_Brut { get; set; }
         public double Total_Marge_Nette { get; set; }
         public double Total_Marge_Nette_Par_Pen { get; set; }
+        public double Total_Revient_Prod { get; set; }
+        public double Total_HT_Prod { get; set; }
+        public double Total_TTC_Prod { get; set; }
+        public double Total_Marge_Nette_Prod { get; set; }
 
         public virtual Responsable_Entreprise User { get; set; }
         public virtual Domaine Domaine { get; set; }
+        public virtual ICollection<Produit> Produits { get; set; }
+
         public ICollection<Offre_Employe> Offre_Employes { get; set; }
         public ICollection<Tâche>tâches;
 

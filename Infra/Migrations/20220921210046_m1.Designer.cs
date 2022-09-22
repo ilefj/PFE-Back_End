@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20220916122502_m44")]
-    partial class m44
+    [Migration("20220921210046_m1")]
+    partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,9 +70,8 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Salaire")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<double>("Salaire")
+                        .HasColumnType("double");
 
                     b.Property<string>("Tel")
                         .IsRequired()
@@ -125,6 +124,55 @@ namespace Infra.Migrations
                     b.HasIndex("EmployeId");
 
                     b.ToTable("Offre_Employe");
+                });
+
+            modelBuilder.Entity("Application.Models.Entity.Produit", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("OffreId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<double>("Produit_HT")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Produit_TTC")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Quantite")
+                        .HasColumnType("double");
+
+                    b.Property<double>("apres_Marge")
+                        .HasColumnType("double");
+
+                    b.Property<double>("apres_Remise")
+                        .HasColumnType("double");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("marge")
+                        .HasColumnType("int");
+
+                    b.Property<string>("nom_Prod")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("prix_Unitaire")
+                        .HasColumnType("double");
+
+                    b.Property<int>("remise")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("OffreId");
+
+                    b.ToTable("produit");
                 });
 
             modelBuilder.Entity("Application.Models.Entity.Responsable_Entreprise", b =>
@@ -245,6 +293,9 @@ namespace Infra.Migrations
                     b.Property<double>("Total_Cout_Offre")
                         .HasColumnType("double");
 
+                    b.Property<double>("Total_HT_Prod")
+                        .HasColumnType("double");
+
                     b.Property<double>("Total_Marge_Brut")
                         .HasColumnType("double");
 
@@ -254,10 +305,19 @@ namespace Infra.Migrations
                     b.Property<double>("Total_Marge_Nette_Par_Pen")
                         .HasColumnType("double");
 
+                    b.Property<double>("Total_Marge_Nette_Prod")
+                        .HasColumnType("double");
+
                     b.Property<double>("Total_Prix_Proposition")
                         .HasColumnType("double");
 
                     b.Property<double>("Total_Prix_Revient")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Total_Revient_Prod")
+                        .HasColumnType("double");
+
+                    b.Property<double>("Total_TTC_Prod")
                         .HasColumnType("double");
 
                     b.Property<string>("UserId")
@@ -473,6 +533,17 @@ namespace Infra.Migrations
                     b.Navigation("offre");
                 });
 
+            modelBuilder.Entity("Application.Models.Entity.Produit", b =>
+                {
+                    b.HasOne("Application.Models.Offre", "Offre")
+                        .WithMany("Produits")
+                        .HasForeignKey("OffreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Offre");
+                });
+
             modelBuilder.Entity("Application.Models.Offre", b =>
                 {
                     b.HasOne("Application.Models.Entity.Domaine", "Domaine")
@@ -571,6 +642,8 @@ namespace Infra.Migrations
             modelBuilder.Entity("Application.Models.Offre", b =>
                 {
                     b.Navigation("Offre_Employes");
+
+                    b.Navigation("Produits");
                 });
 
             modelBuilder.Entity("Application.Models.TypeTâche", b =>

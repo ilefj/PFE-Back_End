@@ -20,7 +20,7 @@ namespace Application.Models.Entity
         public string Email { get; set; }
         public string Adresse { get; set; }
         public string Tel { get; set; }
-        public string Salaire { get; set; }
+        public double Salaire { get; set; }
         public virtual Responsable_Entreprise User { get; set; }
         [JsonIgnore]
         public ICollection<Offre_Employe> Offre_Employes { get; set; }

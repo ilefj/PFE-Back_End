@@ -16,14 +16,6 @@ namespace Application.Models
         public string Reference { get; set; }
         public string UserId { get; set; }
         public string domaineId{ get; set; }
-        
-        public Emp[] Employes { get; set; }
-
-    }
-    public class Emp
-    {
-        public Guid Id { get; set; }
-
 
     }
 }

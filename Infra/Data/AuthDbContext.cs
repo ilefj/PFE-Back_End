@@ -24,6 +24,7 @@ namespace Infra.Data
         public DbSet<TypeTâche> TypeTâche { get; set; }
         public DbSet<Offre> offres { get; set; }
         public DbSet<Employe> employe { get; set; }
+        public DbSet<Produit> produit { get; set; }
         public DbSet<Offre_Employe> Offre_Employe { get; set; }
         
     }
