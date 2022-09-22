@@ -17,7 +17,7 @@ namespace Application.Models.Request
         public string Email { get; set; }
         public string Adresse { get; set; }
         public string Tel { get; set; }
-        public string Salaire { get; set; }
+        public double Salaire { get; set; }
         public string UserId { get; set; }
 
     }

@@ -1687,11 +1687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projets\\Pfe\\.net\\Version back 2\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\PFE-Project\\Back-End\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\projets\\Pfe\\.net\\Version back 2\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\ASUS\\PFE-Project\\Back-End\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "C:\\projets\\Pfe\\.net\\Version back 2\\Application\\obj\\",
+      "outputPath": "C:\\Users\\ASUS\\PFE-Project\\Back-End\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
